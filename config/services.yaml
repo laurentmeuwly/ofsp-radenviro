@@ -4,7 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: 'fr'
+    app_locales: fr|de|it|en
 
 services:
     # default configuration for services in *this* file
@@ -27,6 +28,12 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     
+    admin.country:
+        class: App\Admin\CountryAdmin
+        arguments: [~, App\Entity\Country, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Country }
+            
     admin.quantityunit:
         class: App\Admin\QuantityUnitAdmin
         arguments: [~, App\Entity\QuantityUnit, ~]
