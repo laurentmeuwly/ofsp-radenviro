@@ -3,14 +3,13 @@
 
 namespace App\Controller;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class HomepageController
+class HomepageController extends AbstractController
 {
     public function index()
     {
-        return new Response(
-            '<html><body>Hello Radenviro</body></html>'
-        );
+        return $this->render('map/map.html.twig');
     }
 }
