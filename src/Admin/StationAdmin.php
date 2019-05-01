@@ -65,18 +65,24 @@ class StationAdmin extends AbstractAdmin
 		->add('zoom', 		null, [ 'label' => 'admin.label.zoom' ])
 		->add('defaultZoom',null, [ 'label' => 'admin.label.default_zoom' ])
 		->end()
-		->with('History', array('class' => 'col-md-3', 'label' => 'admin.label.history'))
-			->add('createdAt', 'sonata_type_datetime_picker',  array('label' => 'admin.label.created_at',
-					'attr' => array(
-							'readonly' => true
-					)
-			))
-			->add('updatedAt', 'sonata_type_datetime_picker', array('label' => 'admin.label.updated_at',
-					'attr' => array(
-							'readonly' => true
-					)
-			))
+		
+		->with('History', ['class' => 'col-md-3', 'label' => 'admin.label.history'])
+		->add('createdAt', DateTimePickerType::class,  [
+		    'label' => 'admin.label.created_at',
+		    'format'=>'yyyy-MM-dd HH:mm',
+		    'attr' => [
+		        'readonly' => true
+		    ]
+		])
+		->add('updatedAt', DateTimePickerType::class, [
+		    'label' => 'admin.label.updated_at',
+		    'format'=>'yyyy-MM-dd HH:mm',
+		    'attr' => [
+		        'readonly' => true
+		    ]
+		])
 		->end()
+		
 		->with('Informations', array('class' => 'col-md-6', 'label' => 'admin.label.informations'))
 			->add('translations', TranslationsType::class, array(
 				'label' => false,

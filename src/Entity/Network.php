@@ -31,6 +31,12 @@ class Network
      */
     private $active=false;
     
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\NetworkCategory")
+     */
+    private $networkCategory;
+    
+    
     public function __call($method, $args)
     {
         if (!method_exists(self::getTranslationEntityClass(), $method)) {
@@ -72,5 +78,17 @@ class Network
         $this->active = $active;
 
         return $this;
+    }
+    
+    public function setNetworkCategory($networkCategory)
+    {
+        $this->networkCategory = $networkCategory;
+        
+        return $this;
+    }
+    
+    public function getNetworkCategory()
+    {
+        return $this->networkCategory;
     }
 }

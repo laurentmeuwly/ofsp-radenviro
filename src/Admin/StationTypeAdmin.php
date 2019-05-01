@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\Form\Type\DateTimePickerType;
 use A2lix\TranslationFormBundle\Form\Type\TranslationsType;
 
 class StationTypeAdmin extends AbstractAdmin
@@ -36,16 +37,20 @@ class StationTypeAdmin extends AbstractAdmin
 				))
 		->end()
 		->with('History', array('class' => 'col-md-3', 'label' => 'admin.label.history'))
-		->add('createdAt', 'sonata_type_datetime_picker',  array('label' => 'admin.label.created_at',
-				'attr' => array(
-						'readonly' => true
-				)
-		))
-		->add('updatedAt', 'sonata_type_datetime_picker', array('label' => 'admin.label.updated_at',
-				'attr' => array(
-						'readonly' => true
-				)
-		))
+		->add('createdAt', DateTimePickerType::class,  [
+		    'label' => 'admin.label.created_at',
+		    'format'=>'yyyy-MM-dd HH:mm',
+		    'attr' => [
+		        'readonly' => true
+		    ]
+		])
+		->add('updatedAt', DateTimePickerType::class, [
+		    'label' => 'admin.label.updated_at',
+		    'format'=>'yyyy-MM-dd HH:mm',
+		    'attr' => [
+		        'readonly' => true
+		    ]
+		])
 		->end()
 		;
 	}

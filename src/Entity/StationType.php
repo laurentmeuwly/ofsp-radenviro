@@ -14,6 +14,20 @@ class StationType
     use ORMBehaviors\Translatable\Translatable;
     use TimestampableEntity;
     
+    public function __call($method, $args)
+    {
+        if (!method_exists(self::getTranslationEntityClass(), $method)) {
+            $method = 'get' . ucfirst($method);
+        }
+        
+        return $this->proxyCurrentLocaleTranslation($method, $args);
+    }
+    
+    public function __toString()
+    {
+        return (string) $this->getName();
+    }
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

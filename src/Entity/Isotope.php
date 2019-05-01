@@ -57,6 +57,12 @@ class Isotope
     private $active;
     
     /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Element")
+     *
+     */
+    private $element;
+    
+    /**
      * @param $method
      * @param $args
      *

@@ -14,6 +14,15 @@ class Element
     use ORMBehaviors\Translatable\Translatable;
     use TimestampableEntity;
     
+    public function __call($method, $args)
+    {
+        if (!method_exists(self::getTranslationEntityClass(), $method)) {
+            $method = 'get' . ucfirst($method);
+        }
+        
+        return $this->proxyCurrentLocaleTranslation($method, $args);
+    }
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

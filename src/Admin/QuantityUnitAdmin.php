@@ -12,6 +12,11 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class QuantityUnitAdmin extends AbstractAdmin
 {
+    protected $datagridValues = array(
+        '_sort_order' => 'ASC',
+        '_sort_by' => 'code'
+    );
+    
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper

@@ -7,9 +7,9 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\AutomaticNetworkRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\SiteTypeRepository")
  */
-class AutomaticNetwork
+class SiteType
 {
     use ORMBehaviors\Translatable\Translatable;
     use TimestampableEntity;
@@ -36,35 +36,32 @@ class AutomaticNetwork
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=10)
-     */
-    private $color;
-
-    /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $position;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $color;
 
     /**
      * @ORM\Column(type="boolean")
      */
     private $active;
+    
+    /**
+     * Sites of the SiteType.
+     *
+     * @var Site[]
+     * @ORM\OneToMany(targetEntity="Site", mappedBy="siteType")
+     **/
+    private $sites;
+    
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getColor(): ?string
-    {
-        return $this->color;
-    }
-
-    public function setColor(string $color): self
-    {
-        $this->color = $color;
-
-        return $this;
     }
 
     public function getPosition(): ?int
@@ -72,9 +69,21 @@ class AutomaticNetwork
         return $this->position;
     }
 
-    public function setPosition(int $position): self
+    public function setPosition(?int $position): self
     {
         $this->position = $position;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
 
         return $this;
     }
@@ -89,5 +98,26 @@ class AutomaticNetwork
         $this->active = $active;
 
         return $this;
+    }
+    
+    /**
+     * Return all sites associated to the siteType.
+     *
+     * @return Site[]
+     */
+    public function getSites()
+    {
+        return $this->sites;
+    }
+    
+    /**
+     * Set all sites in the siteType.
+     *
+     * @param Site[] $sites
+     */
+    public function setSites($sites)
+    {
+        $this->sites->clear();
+        $this->sites = new ArrayCollection($sites);
     }
 }
