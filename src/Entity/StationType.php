@@ -4,12 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\QuantityUnitRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\StationTypeRepository")
  */
-class QuantityUnit
+class StationType
 {
+    use ORMBehaviors\Translatable\Translatable;
     use TimestampableEntity;
     
     /**
@@ -18,9 +20,9 @@ class QuantityUnit
      * @ORM\Column(type="integer")
      */
     private $id;
-    
+
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=30)
      */
     private $code;
 
@@ -40,5 +42,4 @@ class QuantityUnit
 
         return $this;
     }
-
 }

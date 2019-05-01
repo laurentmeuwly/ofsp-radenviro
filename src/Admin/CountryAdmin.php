@@ -35,18 +35,4 @@ class CountryAdmin extends AbstractAdmin
         ;
     }
 	
-	/**
-	 * {@inheritdoc}
-	 */
-/*	protected function configureFormFields(FormMapper $formMapper)
-	{
-		$formMapper
-		->with('Country', array('class' => 'col-md-6'))
-		->add('code')
-		->add('translations', TranslationsType::class)
-		->end()
-		;
-	}
-*/
-	
 }

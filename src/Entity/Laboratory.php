@@ -3,26 +3,28 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\QuantityUnitRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\LaboratoryRepository")
  */
-class QuantityUnit
+class Laboratory
 {
-    use TimestampableEntity;
-    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=10)
      */
     private $code;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $active;
 
     public function getId(): ?int
     {
@@ -41,4 +43,15 @@ class QuantityUnit
         return $this;
     }
 
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
 }

@@ -3,24 +3,21 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\QuantityUnitRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\MethodRepository")
  */
-class QuantityUnit
+class Method
 {
-    use TimestampableEntity;
-    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
-    
+
     /**
-     * @ORM\Column(type="string", length=10)
+     * @ORM\Column(type="string", length=20)
      */
     private $code;
 
@@ -40,5 +37,4 @@ class QuantityUnit
 
         return $this;
     }
-
 }

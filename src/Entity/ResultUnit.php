@@ -6,9 +6,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\QuantityUnitRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ResultUnitRepository")
  */
-class QuantityUnit
+class ResultUnit
 {
     use TimestampableEntity;
     

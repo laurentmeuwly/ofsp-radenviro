@@ -39,3 +39,11 @@ services:
         arguments: [~, App\Entity\QuantityUnit, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: QuantityUnit }
+
+    admin.automaticnetwork:
+        class: App\Admin\AutomaticNetworkAdmin
+        arguments: [~, App\Entity\AutomaticNetwork, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: AutomaticNetwork }
+            
+    

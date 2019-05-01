@@ -7,9 +7,9 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CountryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\NetworkRepository")
  */
-class Country
+class Network
 {
     use ORMBehaviors\Translatable\Translatable;
     use TimestampableEntity;
@@ -19,20 +19,18 @@ class Country
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;    
+    private $id;
 
     /**
-     * @ORM\Column(type="string", length=2)
+     * @ORM\Column(type="string", length=30)
      */
     private $code;
-    
-    
+
     /**
-     * @param $method
-     * @param $args
-     *
-     * @return mixed
+     * @ORM\Column(type="boolean")
      */
+    private $active=false;
+    
     public function __call($method, $args)
     {
         if (!method_exists(self::getTranslationEntityClass(), $method)) {
@@ -40,6 +38,11 @@ class Country
         }
         
         return $this->proxyCurrentLocaleTranslation($method, $args);
+    }
+    
+    public function __toString()
+    {
+        return (string)$this->getName();
     }
 
     public function getId(): ?int
@@ -58,5 +61,16 @@ class Country
 
         return $this;
     }
-    
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
 }
